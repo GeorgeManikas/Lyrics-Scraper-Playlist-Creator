@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+ Playlist 
+{% endblock title %} 
+
+{% block content %}
+<h1 style="text-align:center;font-size:20px;"> Playlist </h1>
+<ol>
+
+  <a href="/" class='btn btn-outline-info'> Home Page</a>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+<a href="{% url 'lyrics:playlist_to_pdf' %}" class="btn btn-outline-info ml-6 mr-1 "> Export whole playlist to pdf </a>
+  {% if songs %}
+    {% for song in songs %}
+    <li>
+      
+      <a href="{% url 'lyrics:show_song' song.id %}">  {{ song.artist}} - {{ song.title}} </a>
+      <a href={% url 'lyrics:write_to_pdf' song.id%} class='btn btn-outline-info m-1'> Extract to pdf</a> 
+      <a href="{% url 'lyrics:delete_song' song.pk %}" class="btn btn-outline-danger m-1"> Delete Song</a>
+      
+    </li>
+    {% endfor %}
+  {% else %}
+  <li> No songs in the playlist </li>
+  <a href="/" class='btn btn-outline-info'>Home page </a>
+  {% endif %}
+</ol>
+{% endblock content %}

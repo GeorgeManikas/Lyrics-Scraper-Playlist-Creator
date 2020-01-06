@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}
+  {{ request.session.title}}
+{% endblock title %}
+
+{% block content %}
+<a href="/" class="btn btn-outline-primary"> Home</a>
+<a href="{% url 'lyrics:save_playlist' %}" class='btn btn-outline-success ml-4'> Save to playlist</a>
+
+  <h2> {{ request.session.artist }} </h2>
+    <h2> {{ request.session.title }} </h2>
+    <textarea name="" id="lyrics" cols="80" rows="40">
+        {{ request.session.lyrics}}
+    </textarea>
+
+    
+{% endblock content %}
+    

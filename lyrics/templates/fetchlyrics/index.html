@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load  crispy_forms_tags %}
+{% block title %}
+
+  Search Lyrics
+{% endblock title %}
+    {% block content %}
+      <form action="" method="POST">
+      {% if messages %}
+      <ul class="messages list-group" style="list-style:none;">
+      {% for message in messages %}
+        <li class="alert alert-success">{{ message }}</li>
+      {% endfor %}
+    </ul>
+{% endif %}
+      {% if request.user.is_authenticated %}
+        <p class='mb-2' style="font-size:18px;" > Hello, {{ request.user }} </p>
+        <a href="{% url 'account_logout'%}" class='btn btn-outline-info m-2'>Logout </a>
+      {% else%}
+        <p class='mb-2'> <a href="{% url 'account_login' %}" class='btn btn-outline-info m-2'> Login </a>  </p>
+      {% endif%}
+        <h1>Search Song</h1>
+        {% csrf_token %}
+        {{ form | crispy}} <br>
+        <input type='submit' class='btn btn-outline-primary' name="" id="" value="Search">
+      </form>
+      <hr>
+      <a href="{% url 'lyrics:show_playlist' %}" class='btn btn-outline-primary'> Show Playlist </a>
+
+
+    {% endblock content %}
+    
