@@ -20,7 +20,7 @@ http-requests==0.1
 idna==2.8
 isort==4.3.21
 lazy-object-proxy==1.4.3
-lxml==4.4.2
+lxml==4.6.2
 mccabe==0.6.1
 multidict==4.7.3
 oauthlib==3.1.0
